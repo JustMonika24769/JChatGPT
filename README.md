@@ -9,10 +9,12 @@
 回复bot的消息即可引用对应的上下文对话（包括这个回复的历史对话）
 
 ## 权限列表
+
 - `JChatGPT:Chat` 拥有该权限即可使用bot与ChatGPT对话
 - `top.jie65535.mirai.jchatgpt:command.jgpt` 拥有该权限即可使用`/jgpt`相关命令
 
 ## 命令列表
+
 - `/jgpt setToken <token>` - 设置OpenAI API Token
 - `/jgpt enable <contact>` - 启用目标对话权限
 - `/jgpt disable <contact>` - 禁用目标对话权限
@@ -21,6 +23,7 @@
 ## 配置文件
 
 `./config/top.jie65535.mirai.JChatGPT/Config.yml`
+
 ```yaml
 # OpenAI API base url
 openAiApi: 'https://api.openai.com/v1/'

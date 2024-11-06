@@ -150,21 +150,17 @@ object JChatGPT : KotlinPlugin(
             }
         }
     }
-    // TODO  消息处理函数，将图片插入到消息中
+
     private suspend fun processMessageWithLatex(message: String): String {
-        val latexPattern = Pattern.compile("%%(.*?)%%", Pattern.DOTALL)
+        val latexPattern = Pattern.compile("(\\$[^\\$]+\\\$|\\\\\\[[^\\]]+\\\\\\]|\\\\\\([^\\)]+\\\\\\)|\\\\begin\\{equation\\}.*?\\\\end\\{equation\\})")
         val matcher = latexPattern.matcher(message)
 
         val processedMessage = StringBuffer()
         while (matcher.find()) {
             val latexCode = matcher.group(1)
-            try {
-                // 获取图片URL
-                val imageUrl = convertLatexToImage(latexCode)
-                matcher.appendReplacement(processedMessage, imageUrl)
-            } catch (e: Exception) {
-                matcher.appendReplacement(processedMessage, latexCode) // 保留原始文本以防错误
-            }
+            val imageUrl = convertLatexToImage(latexCode)
+            val imgTag = "<img src=\"$imageUrl\" alt=\"$latexCode\"/>"
+            matcher.appendReplacement(processedMessage, imgTag)
         }
         matcher.appendTail(processedMessage)
 

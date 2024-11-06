@@ -15,7 +15,7 @@ object PluginConfig : AutoSavePluginConfig("Config") {
     var chatModel: String by value("gpt-3.5-turbo-1106")
 
     @ValueDescription("Chat默认提示")
-    var prompt: String by value("所有LaTex表达式都用%%包裹")
+    var prompt: String by value("")
 
     @ValueDescription("群管理是否自动拥有对话权限，默认是")
     val groupOpHasChatPermission: Boolean by value(true)
